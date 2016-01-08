@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
   let (:question) { FactoryGirl.create(:question) }
-  before { get :index }
+  let(:user) { create(:user) }
+
   describe "GET #index" do
+    before { get :index }
+
     it 'load all questiions' do
       questions = FactoryGirl.create_list(:question, 3)
       #get :index
@@ -32,7 +35,13 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe "GET #new" do
-    before { get :new }
+
+    before do
+      login(user)
+
+      get :new
+    end
+
 
     it 'assigns new Question' do
       expect(assigns(:question)).to be_a_new(Question)
@@ -45,7 +54,10 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe "GET #edit" do
-    before { get :edit, id: question }
+    before do
+      login(user)
+      get :edit, id: question
+    end
 
     it 'edits Question' do
       expect(assigns(:question)).to eq question
@@ -57,6 +69,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe "POST #create" do
+    before { login(user) }
     context 'valid' do
       it 'saves new questions in DB' do
         expect { post :create,
@@ -82,6 +95,8 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe "PATCH #update" do
+    before { login(user) }
+
     context 'valid' do
       before { patch :update, id: question, question: {title: 'new title', body: 'new body'} }
       it 'changes question' do
@@ -94,6 +109,19 @@ RSpec.describe QuestionsController, type: :controller do
       it 'redirects to show' do
         expect(response).to redirect_to question
       end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    before do
+      login(user)
+      question
+    end
+    it 'deletes question from DB' do
+      expect {delete :destroy, id: question }.to change(Question, :count).by(-1)
+    end
+    it 'does not delete question from DB' do
+      expect { delete :destroy, id: question }.to_not change(Question, :count)
     end
   end
 
