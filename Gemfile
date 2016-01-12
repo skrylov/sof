@@ -40,6 +40,8 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 
 end
 
