@@ -1,4 +1,11 @@
-$('.answers').append('<%= j render @answer %>');
-$('.answers-count').html('Answers count: ' + '<%= @question.answers.count %>');
+$('.answers-errors').html('');
+<% if @answer.errors.present? %>
+    <% @answer.errors.full_messages.each do |message| %>
+        $('.answers-errors').append('<%= j message %>');
+    <% end %>
+<% else %>
+    $('.answers').append('<%= j render @answer %>');
+    $('.answers-count').html('Answers count: ' + '<%= @question.answers.count %>');
 
-$('#answer_body').val('');
+    $('#answer_body').val('');
+<% end %>

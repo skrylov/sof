@@ -22,4 +22,15 @@ feature 'User answer', %q{
     end
   end
 
+  scenario 'user tries to create invalid answer', js: true do
+    login(user)
+    visit question_path(question)
+
+    click_on 'Create'
+    within '.answers-errors' do
+      expect(page).to have_content "Body can't be blank"
+    end
+
+  end
+
 end
