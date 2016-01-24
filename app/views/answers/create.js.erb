@@ -1,11 +1,16 @@
-$('.answers-errors').html('');
+$('.answer-errors').html('');
 <% if @answer.errors.present? %>
-    <% @answer.errors.full_messages.each do |message| %>
-        $('.answers-errors').append('<%= j message %>');
-    <% end %>
-<% else %>
-    $('.answers').append('<%= j render @answer %>');
-    $('.answers-count').html('Answers count: ' + '<%= @question.answers.count %>');
-
-    $('#answer_body').val('');
+<% @answer.errors.full_messages.each do |message| %>
+$('.answer-errors').append('<p><%= j message  %></p>');
 <% end %>
+<% else %>
+//  $('.answers-count').html('Answers count: ' + '<%= @question.answers.count %>');
+//  $('.answers').append('<%= j render @answer %>');
+
+$('#answer_body').val('');
+<% publish_to "/questions/#{@answer.question_id}/answers" do %>
+$('.answers-count').html('Answers count: ' + '<%= @question.answers.count %>');
+$('.answers').append('<%= j render @answer %>');
+<% end %>
+<% end %>
+

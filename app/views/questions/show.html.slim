@@ -3,13 +3,23 @@ p
   = @question.body
   - if current_user && current_user.author_of?(@question)
     p= link_to 'Delete', @question, method: :delete
+
+p Attachments:
+
+ul
+  - @question.attachments.each do |a|
+   li= link_to a.file.identifier
+
+
 .answers
   p.answers-count
-    | Answers count: 
+    | Answers count:
     = @question.answers.count
   = render @question.answers
 .answers-errors
-= form_for [@question, Answer.new], remote: true do |f|
+= form_for [@question, Answer.new], remote: true do |f| # privatepub doesn't work while ..true, format: :json
   = f.label :body, 'Your answer'
   = f.text_area :body
   = f.submit 'Create'
+
+= subscribe_to "/questions/#{@question.id}/answers"
