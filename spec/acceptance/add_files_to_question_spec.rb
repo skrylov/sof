@@ -9,7 +9,7 @@ I want to be able to attach files
   given(:user) { create(:user)}
 
   background do
-    sign_in(user)
+    login(user)
     visit new_question_path
 
   end

@@ -1,7 +1,7 @@
 h1= @question.title
 p
   = @question.body
-  - if current_user && current_user.author_of?(@question)
+  - if can?(:destroy, @question)
     p= link_to 'Delete', @question, method: :delete
 
 p Attachments:
@@ -20,6 +20,10 @@ ul
 = form_for [@question, Answer.new], remote: true do |f| # privatepub doesn't work while ..true, format: :json
   = f.label :body, 'Your answer'
   = f.text_area :body
-  = f.submit 'Create'
+  p
+   = f.fields_for :attachments do |a|
+     = a.label :file
+     = a.file_field :file
+  p= f.submit 'Create'
 
 = subscribe_to "/questions/#{@question.id}/answers"

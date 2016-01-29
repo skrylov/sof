@@ -29,6 +29,8 @@
 #   end
 # end
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new(answer_params)

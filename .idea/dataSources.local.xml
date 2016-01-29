@@ -2,15 +2,12 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Rails sof: development" uuid="e7d1db27-55df-4e31-b00c-c595e02529d7">
-      <first-sync>true</first-sync>
       <user-password>dfdadfc5dfd9dfdedfcddfd8dfcfdfd9</user-password>
     </data-source>
     <data-source name="Rails sof: test" uuid="4c105892-7021-486d-848f-b7e4c1b74f2d">
-      <first-sync>true</first-sync>
       <user-password>dfdadfc5dfd9dfdedfcddfd8dfcfdfd9</user-password>
     </data-source>
     <data-source name="Rails sof: production" uuid="9633b90d-dd39-4cf2-9c5a-2213617afd35">
-      <first-sync>true</first-sync>
       <user-name>sof</user-name>
       <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff9dfe5dfecdff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
     </data-source>
