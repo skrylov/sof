@@ -53,6 +53,11 @@ group :development, :test do
   gem 'cancancan'
   gem 'doorkeeper'
   gem 'active_model_serializers'
+  gem 'sidekiq'
+  gem 'whenever'
+  gem 'sinatra', require: false
+  gem 'thinking-sphinx'
+  gem 'mysql2'
 
 
 end

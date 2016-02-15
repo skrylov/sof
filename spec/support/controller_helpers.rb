@@ -6,4 +6,6 @@ module ControllerHelpers
     sign_in user
 
   end
+
+
 end

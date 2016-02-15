@@ -140,4 +140,14 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   end
+
+  describe "POST /vote_up" do
+    before { login(user) }
+
+    it 'calls Question#vote_up method' do
+      allow(Question).to receive(:find).and_return(question)
+      expect(question).to receive(:vote_up).with(user)
+      post :vote_up, id: question
+    end
+  end
   end

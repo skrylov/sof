@@ -1,4 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  get 'search/search'
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
+
   use_doorkeeper
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks'}
   # The priority is based upon order of creation: first created -> highest priority.
@@ -13,6 +22,7 @@ Rails.application.routes.draw do
 
   #   end
   resources :questions do
+    post :vote_up, on: :member
     resources :answers
   end
 
@@ -24,6 +34,8 @@ Rails.application.routes.draw do
       resources :questions
     end
   end
+
+  get 'search' => 'search#search'
 
   root to: 'questions#index'
 end

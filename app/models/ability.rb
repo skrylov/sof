@@ -27,6 +27,7 @@ class Ability
     can :me, User, id: user.id
     can :vote_up, Question
 
+
     #can :create, [Question, Answer]
     #can :destroy, [Question, Answer], user_id: user.id
   end
