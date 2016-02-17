@@ -58,6 +58,7 @@ group :development, :test do
   gem 'sinatra', require: false
   gem 'thinking-sphinx'
   gem 'mysql2'
+  gem 'dotenv-deployment', require: 'dotenv/deployment'
 
 
 end
@@ -66,6 +67,12 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'rspec-rails', '~> 3.0'
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano-passenger', require: false
+
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
