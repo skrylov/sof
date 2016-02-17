@@ -12,5 +12,10 @@
 !/log/.keep
 /tmp
 
-config/.sphinx.conf
+config/database.yml
+config/private_pub.yml
+
+
+public/uploads
+config/*.sphinx.conf
 db/sphinx
